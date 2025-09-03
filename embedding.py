@@ -16,29 +16,34 @@ import ast
 DASHSCOPE_API_KEY = "sk-684a3a134fbf49af8818a88260778df3"
 
 # 全局复用 OpenAI 客户端
-client = OpenAI(api_key=DASHSCOPE_API_KEY, base_url="https://dashscope.aliyuncs.com/compatible-mode/v1", timeout=60)
+client = OpenAI(api_key=DASHSCOPE_API_KEY, base_url="https://dashscope.aliyuncs.com/compatible-mode/v1", timeout=60, max_retries=5)
 
 def vectorize(texts: Union[str, List[str]]) -> List[Dict]:
     """
     向量化输入文本（支持单个字符串或字符串列表）。
-    包含重试机制和超时设置。
-    
+    包含带指数退避和随机抖动的重试机制，以增强网络请求的健壮性。
+
     参数:
     - texts (str or List[str]): 要向量化的文本内容
-    
+
     返回:
     - List[Dict]: 包含向量信息的字典列表
+    
+    异常:
+    - 当达到最大重试次数后仍然失败时，会抛出最后一次捕获到的异常。
     """
-    for attempt in range(3):
-        try:
-            completion = client.embeddings.create(model="text-embedding-v4", input=texts, dimensions=1024, encoding_format="float")
-            return json.loads(completion.model_dump_json())['data']
-        except Exception as e:
-            if attempt < 2:
-                print(f"API调用失败，立即重试... (尝试 {attempt + 1}/3)")
-            else:
-                print(f"API调用失败，已达到最大重试次数: {e}")
-                raise
+    try:
+        completion = client.embeddings.create(
+            model="text-embedding-v4", 
+            input=texts, 
+            dimensions=1024, 
+            encoding_format="float"
+        )
+        return json.loads(completion.model_dump_json())['data']
+    except Exception as e:
+        print(f"API调用失败: {e}")
+        raise
+
 
 def merge_tags_to_csv(csv_path: str) -> None:
     """

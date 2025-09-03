@@ -7,12 +7,56 @@ import re
 import json
 from datetime import datetime, timedelta
 import random
-from typing import Optional
+from typing import Optional, Tuple, Dict
 import importlib
+from enum import Enum
+import time
+import inspect
+from llm_monitor import get_global_monitor, LLMCallStatus
 
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = ""
 
-async def call_llm(system_message: str, user_message: str, model="openai/gpt-oss-120b", temperature=0.5, top_p=0.95, frequency_penalty=0, presence_penalty=0) -> Optional[str]:
+async def call_llm(system_message: str, user_message: str, model="openai/gpt-oss-120b", temperature=0.5, top_p=0.95, frequency_penalty=0, presence_penalty=0, stage: str = None, iteration_info: Dict = None) -> Optional[str]:
+    """
+    调用LLM API并记录详细的监控日志
+    
+    Args:
+        system_message (str): 系统消息
+        user_message (str): 用户消息
+        model (str): 模型名称
+        temperature (float): 温度参数
+        top_p (float): top_p参数
+        frequency_penalty (float): 频率惩罚
+        presence_penalty (float): 存在惩罚
+        stage (str): 当前处理阶段
+        iteration_info (Dict): 迭代信息
+    
+    Returns:
+        Optional[str]: LLM响应内容
+    """
+    # 获取监控器和调用信息
+    monitor = get_global_monitor()
+    call_id = monitor.generate_call_id()
+    
+    # 获取调用函数名
+    caller_frame = inspect.currentframe().f_back
+    function_name = caller_frame.f_code.co_name if caller_frame else "unknown"
+    
+    # 记录调用开始
+    monitor.log_call_start(
+        call_id=call_id,
+        function_name=function_name,
+        model=model,
+        system_message=system_message,
+        user_message=user_message,
+        temperature=temperature,
+        top_p=top_p,
+        frequency_penalty=frequency_penalty,
+        presence_penalty=presence_penalty,
+        stage=stage,
+        iteration_info=iteration_info
+    )
+    
     api_key = OPENROUTER_API_KEY
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
@@ -28,19 +72,84 @@ async def call_llm(system_message: str, user_message: str, model="openai/gpt-oss
         "frequency_penalty": frequency_penalty,
         "presence_penalty": presence_penalty
     }
+    
+    start_time = time.time()
+    response_content = None
+    error_message = None
+    attempt_count = 0
+    
     try:
         async with aiohttp.ClientSession() as session:
             for attempt in range(3):
-                async with session.post(url, headers=headers, json=data, ssl=False, timeout=aiohttp.ClientTimeout(total=120)) as response:
+                attempt_count = attempt + 1
+                try:
+                    # 兼容测试中的 AsyncMock：不使用异步上下文管理器包裹 post
+                    response = await session.post(url, headers=headers, json=data, ssl=False, timeout=aiohttp.ClientTimeout(total=120))
                     response_data = await response.json()
                     if content := response_data["choices"][0]["message"]["content"]:
-                        print(content)
-                        return content
-    except Exception:
-        pass
-    return None
+                        response_content = content
+                        print(content)  # 保持原有的控制台输出
+                        break
+                except Exception as e:
+                    error_message = f"尝试 {attempt_count}: {str(e)}"
+                    if attempt < 2:  # 不是最后一次尝试
+                        await asyncio.sleep(1)  # 重试前等待
+                    continue
+    except Exception as e:
+        error_message = f"整体调用异常: {str(e)}"
+    
+    # 计算响应时间
+    response_time = time.time() - start_time
+    
+    # 确定调用状态
+    if response_content:
+        status = LLMCallStatus.SUCCESS
+    elif response_time >= 120:  # 超时
+        status = LLMCallStatus.TIMEOUT
+        error_message = error_message or "请求超时"
+    else:
+        status = LLMCallStatus.FAILED
+        error_message = error_message or "未知错误"
+    
+    # 记录调用结束
+    monitor.log_call_end(
+        call_id=call_id,
+        function_name=function_name,
+        model=model,
+        system_message=system_message,
+        user_message=user_message,
+        response=response_content,
+        response_time=response_time,
+        attempt_count=attempt_count,
+        status=status,
+        error_message=error_message,
+        stage=stage,
+        iteration_info=iteration_info,
+        temperature=temperature,
+        top_p=top_p,
+        frequency_penalty=frequency_penalty,
+        presence_penalty=presence_penalty
+    )
+    
+    return response_content
 
 async def call_local_llm(system_message: str, user_message: str, model="qwen3:32b", temperature=0.5, top_p=0.95, frequency_penalty=0, presence_penalty=0) -> Optional[str]:
+    """
+    调用本地LLM（例如Ollama）的聊天接口，采用流式读取返回内容。
+    说明：为兼容测试中的 AsyncMock，本函数不使用 `async with session.post(...)`，而是通过 `await session.post(...)` 获取响应对象。
+    
+    Args:
+        system_message (str): 系统消息
+        user_message (str): 用户消息
+        model (str): 模型名称（本地模型标识）
+        temperature (float): 采样温度
+        top_p (float): nucleus sampling 参数
+        frequency_penalty (float): 频率惩罚
+        presence_penalty (float): 存在惩罚
+    
+    Returns:
+        Optional[str]: 拼接后的完整响应文本
+    """
     url = "http://localhost:11434/api/chat"
     data = {
         "messages": [{"role": "system", "content": system_message}, {"role": "user", "content": user_message}],
@@ -54,35 +163,50 @@ async def call_local_llm(system_message: str, user_message: str, model="qwen3:32
     }
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.post(url, headers={}, json=data, timeout=aiohttp.ClientTimeout(total=150)) as response:
-                content = ""
-                async for line in response.content:
-                    if line:
-                        try:
-                            chunk = json.loads(line.decode("utf-8"))
-                            content += chunk["message"]["content"]
-                            print(chunk["message"]["content"], end="", flush=True)
-                        except json.JSONDecodeError:
-                            continue
-                if content:
-                    print()
-                    return content
+            # 兼容测试中的 AsyncMock：不使用异步上下文管理器包裹 post
+            response = await session.post(url, headers={}, json=data, timeout=aiohttp.ClientTimeout(total=150))
+            content = ""
+            async for line in response.content:
+                if line:
+                    try:
+                        chunk = json.loads(line.decode("utf-8"))
+                        content += chunk["message"]["content"]
+                        print(chunk["message"]["content"], end="", flush=True)
+                    except json.JSONDecodeError:
+                        continue
+            if content:
+                print()
+                return content
     except Exception:
         pass
     return None
 
 def get_prompt(name: str, **arguments) -> str:
-    prompt = getattr(importlib.import_module(f"prompts.{name}"), name)
+    """
+    动态加载并返回指定名称的提示模板（prompt）。
+    安全替换策略：
+    - 如果模块中导出的同名对象是可调用（函数），则直接调用并传入参数，避免对模板进行字符串格式化，
+      以防止模板中包含的花括号（例如JSON示例、表达式片段如"{json.dumps(...)}"）被误解析。
+    - 如果导出的是字符串模板，则仅对提供的参数键执行“按键名的直接文本替换”（将"{key}"替换为对应的值），
+      而不使用 str.format/format_map，以避免 KeyError/AttributeError 以及对非占位花括号的误处理。
+    参数:
+        name (str): 提示模板模块中同名对象的名称（例如 prompts.a_interpret_source_text 模块中的 a_interpret_source_text）
+        **arguments: 需要在模板中替换的占位键值对，仅会替换形如"{key}"的占位符
+    返回:
+        str: 组装后的完整提示词
+    """
+    prompt_obj = getattr(importlib.import_module(f"prompts.{name}"), name)
+    # 如果是函数，则直接调用（函数内部应自行处理参数拼接与花括号）
+    if callable(prompt_obj):
+        return prompt_obj(**arguments) if arguments else prompt_obj()
+
+    # 否则是字符串模板，仅对提供的键执行安全替换
+    prompt_text = str(prompt_obj)
     if arguments:
-        if callable(prompt):
-            return prompt(**arguments)
-        else:
-            return prompt.format(**arguments)
-    else:
-        if callable(prompt):
-            return prompt()
-        else:
-            return prompt
+        for k, v in arguments.items():
+            placeholder = "{" + str(k) + "}"
+            prompt_text = prompt_text.replace(placeholder, str(v))
+    return prompt_text
 
 def extract_with_xml(text, tags):
     text = re.sub(r'<think>[\s\S]*?</think>', '', text)
@@ -376,53 +500,238 @@ async def test_call_local_llm():
             print("❌ LLM调用失败：返回None")
     except Exception as e:
         print(f"❌ LLM调用出错: {e}")
-        
-def validate_and_instruct_content_length(content: str, min_len: int = 300, max_len: int = 500) -> Optional[str]:
+
+# ==================== 字符长度计算系统 ====================
+
+class LengthMode(Enum):
+    """长度计算模式枚举"""
+    CHARACTER = "character"  # 字符模式（610标准）
+    WORD = "word"           # 字数模式（574标准，不含标点）
+    SEMANTIC_WITH_PUNCT = "semantic_with_punct"  # 字符模式（包含标点符号）
+
+def calculate_characters_with_punctuation(content: str) -> Dict[str, int]:
     """
-    验证简报内容的长度，并在不合规时生成具体的修改指令。
+    计算字符（包含标点符号）的详细统计
+    
+    Args:
+        content (str): 待计算的内容
+        
+    Returns:
+        Dict[str, int]: 各类字符的统计结果
+    """
+    # 1. 中文字符（包括中文标点符号）
+    chinese_chars = re.findall(r'[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]', content)
+    chinese_count = len(chinese_chars)
+    
+    # 2. 英文单词（连续的英文字母）
+    english_words = re.findall(r'[a-zA-Z]+', content)
+    english_count = len(english_words)
+    
+    # 3. 数字组（连续的数字）
+    number_groups = re.findall(r'\d+', content)
+    number_count = len(number_groups)
+    
+    # 4. 英文标点符号和其他符号
+    # 排除空白字符，排除已经统计的中文字符、英文字母、数字
+    remaining_content = re.sub(r'[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]', '', content)  # 移除中文字符
+    remaining_content = re.sub(r'[a-zA-Z]', '', remaining_content)  # 移除英文字母
+    remaining_content = re.sub(r'\d', '', remaining_content)  # 移除数字
+    remaining_content = re.sub(r'\s', '', remaining_content)  # 移除空白字符
+    
+    english_punct_count = len(remaining_content)
+    
+    # 总字符数
+    total_semantic_units = chinese_count + english_count + number_count + english_punct_count
+    
+    return {
+        'chinese_chars': chinese_count,
+        'english_words': english_count,
+        'number_groups': number_count,
+        'english_punctuation': english_punct_count,
+        'total_semantic_units': total_semantic_units
+    }
+
+def calculate_length_by_mode(content: str, mode: LengthMode) -> int:
+    """
+    根据指定模式计算内容长度
+    
+    Args:
+        content (str): 待计算的内容
+        mode (LengthMode): 计算模式
+        
+    Returns:
+        int: 计算得到的长度
+    """
+    if mode == LengthMode.CHARACTER:
+        # 字符模式：移除空白字符后的字符数
+        return len(re.sub(r'\s', '', content))
+    elif mode == LengthMode.WORD:
+        # 字数模式：移除标点符号后的字符数（更接近574字标准）
+        content_no_punct = re.sub(r'[，。！？；：""（）【】《》、·—…％%]', '', content)
+        return len(re.sub(r'\s', '', content_no_punct))
+    elif mode == LengthMode.SEMANTIC_WITH_PUNCT:
+        # 字符模式（包含标点符号）
+        semantic_stats = calculate_characters_with_punctuation(content)
+        return semantic_stats['total_semantic_units']
+    else:
+        raise ValueError(f"不支持的长度计算模式: {mode}")
+
+def validate_content_length_characters(
+    content: str,
+    target_length: int = 475,
+    mode: LengthMode = LengthMode.SEMANTIC_WITH_PUNCT,
+    tolerance: int = 50,
+    min_threshold: int = 75,
+    max_threshold: int = 75
+) -> Tuple[Optional[str], int, Dict]:
+    """
+    字符模式的内容长度校验函数（推荐使用）
+    
+    Args:
+        content (str): 待校验的内容
+        target_length (int): 目标长度
+        mode (LengthMode): 长度计算模式
+        tolerance (int): 理想区间的容忍度
+        min_threshold (int): 最小长度阈值（相对于目标长度的偏差）
+        max_threshold (int): 最大长度阈值（相对于目标长度的偏差）
+        
+    Returns:
+        Tuple[Optional[str], int, Dict]: (校验结果消息, 实际长度, 详细信息)
+    """
+    actual_length = calculate_length_by_mode(content, mode)
+    
+    # 计算所有模式的长度用于对比
+    char_length = calculate_length_by_mode(content, LengthMode.CHARACTER)
+    word_length = calculate_length_by_mode(content, LengthMode.WORD)
+    semantic_length = calculate_length_by_mode(content, LengthMode.SEMANTIC_WITH_PUNCT)
+    
+    # 获取详细的字符统计
+    semantic_stats = calculate_characters_with_punctuation(content)
+    
+    detail_info = {
+        'actual_length': actual_length,
+        'character_length': char_length,
+        'word_length': word_length,
+        'semantic_length': semantic_length,
+        'semantic_breakdown': semantic_stats,
+        'target_length': target_length,
+        'mode': mode.value,
+        'difference': actual_length - target_length
+    }
+    
+    # 定义长度区间
+    min_len = target_length - min_threshold
+    max_len = target_length + max_threshold
+    optimal_min = target_length - tolerance
+    optimal_max = target_length + tolerance
+    
+    # 根据模式确定单位描述
+    if mode == LengthMode.CHARACTER:
+        unit_desc = "字符"
+    elif mode == LengthMode.WORD:
+        unit_desc = "字"
+    else:  # SEMANTIC_WITH_PUNCT
+        unit_desc = "字符"
+    
+    # 1. 强制修正区 (Hard Fail)
+    if not (min_len <= actual_length <= max_len):
+        if actual_length > max_len:
+            diff = actual_length - max_len
+            instruction = f"""
+### 内容长度修改指令 (最高优先级 - 必须修正) ###
+- **问题**: 简报内容**严重超长**。
+- **当前长度**: {actual_length} {unit_desc}（{mode.value}模式）。
+- **目标长度**: {target_length} {unit_desc}。
+- **修改要求**: 必须缩减至少 {diff} 个{unit_desc}。
+- **缩减策略**: 删除具体案例细节、修饰性词语和次要背景信息。
+"""
+        else:  # actual_length < min_len
+            diff = min_len - actual_length
+            instruction = f"""
+### 内容长度修改指令 (最高优先级 - 必须修正) ###
+- **问题**: 简报内容**严重过短**。
+- **当前长度**: {actual_length} {unit_desc}（{mode.value}模式）。
+- **目标长度**: {target_length} {unit_desc}。
+- **修改要求**: 必须扩充至少 {diff} 个{unit_desc}。
+- **扩充策略**: 补充关键细节和背景信息。
+"""
+        return instruction, actual_length, detail_info
+    
+    # 2. 建议优化区 (Soft Fail)
+    elif not (optimal_min <= actual_length <= optimal_max):
+        diff = target_length - actual_length
+        if diff > 0:  # 内容偏短
+            instruction = f"""
+### 内容长度优化建议 (中等优先级 - 建议优化) ###
+- **状态**: 简报长度可接受，但**略短**。
+- **当前长度**: {actual_length} {unit_desc}（{mode.value}模式）。
+- **目标长度**: {target_length} {unit_desc}。
+- **优化建议**: 建议扩充约 {diff} 个{unit_desc}。
+"""
+        else:  # 内容偏长
+            instruction = f"""
+### 内容长度优化建议 (中等优先级 - 建议优化) ###
+- **状态**: 简报长度可接受，但**略长**。
+- **当前长度**: {actual_length} {unit_desc}（{mode.value}模式）。
+- **目标长度**: {target_length} {unit_desc}。
+- **优化建议**: 建议缩减约 {-diff} 个{unit_desc}。
+"""
+        return instruction, actual_length, detail_info
+    
+    # 3. 理想区 (Success)
+    else:
+        return None, actual_length, detail_info
+
+def validate_574_character_standard(content: str) -> Tuple[Optional[str], int, Dict]:
+    """
+    574字符标准的专用校验函数（推荐使用，作为默认标准）
+    
+    Args:
+        content (str): 待校验的内容
+        
+    Returns:
+        Tuple[Optional[str], int, Dict]: (校验结果消息, 实际长度, 详细信息)
+    """
+    return validate_content_length_characters(
+        content=content,
+        target_length=475,
+        mode=LengthMode.SEMANTIC_WITH_PUNCT,
+        tolerance=50,     # 理想区间: 425-525
+        min_threshold=75, # 强制区间: 400-550
+        max_threshold=100
+    )
+
+# ==================== 向后兼容的原始函数 ====================
+        
+def validate_and_instruct_content_length(
+    content: str,
+    min_len: int = 400,
+    max_len: int = 550,
+    optimal_target: int = 475,
+    tolerance: int = 50
+) -> Optional[str]:
+    """
+    验证简报内容的长度，并在不合规时生成具体的、分级的修改指令。
+    该函数统一使用574字符标准进行长度校验。
+    
+    该函数实现了三级梯度校验：
+    1.  **强制修正区 (Hard Fail)**: 长度在 [min_len, max_len] 范围之外，必须修正。
+    2.  **建议优化区 (Soft Fail)**: 长度在 [min_len, max_len] 范围之内，但未达到以 optimal_target 为中心的理想区间，建议优化。
+    3.  **理想区 (Success)**: 长度在以 optimal_target 为中心的理想区间内，无需修改。
 
     Args:
         content (str): 待验证的简报内容。
-        min_len (int): 最小长度。
-        max_len (int): 最大长度。
+        min_len (int): 最小长度硬性下限（默认400）。
+        max_len (int): 最大长度硬性上限（默认550）。
+        optimal_target (int): 理想目标长度（默认475字符）。
+        tolerance (int): 围绕理想目标的容忍度，定义了理想区间 (optimal_target ± tolerance)。
 
     Returns:
-        Optional[str]: 如果长度不合规，返回修改指令字符串；如果合规，返回None。
+        Optional[str]: 如果需要修改或优化，返回指令字符串；如果长度在理想区，返回None。
     """
-    actual_length = len(content)
-
-    if not (min_len <= actual_length <= max_len):
-        if actual_length > max_len:
-            # 内容过长
-            diff = actual_length - max_len
-            instruction = f"""
-### 内容长度修改指令 (最高优先级) ###
-- **问题**: 简报内容过长。
-- **当前精确长度**: {actual_length} 字符。
-- **目标范围**: {min_len}-{max_len} 字符。
-- **修改要求**: 你必须 (MUST) 将内容**缩减至少 {diff} 个字符**。
-- **缩减策略**:
-  1.  **优先删减**: 首先删除具体的案例细节、修饰性词语和次要的背景信息。
-  2.  **合并句子**: 将逻辑相关的短句合并，使用更凝练的表达。
-  3.  **保留核心**: 确保在缩减后，最重要的事实、数据和最终的分析结论得以保留。
-"""
-        else: # 内容过短
-            diff = min_len - actual_length
-            instruction = f"""
-### 内容长度修改指令 (最高优先级) ###
-- **问题**: 简报内容过短。
-- **当前精确长度**: {actual_length} 字符。
-- **目标范围**: {min_len}-{max_len} 字符。
-- **修改要求**: 你必须 (MUST) 为内容**扩充至少 {diff} 个字符**。
-- **扩充策略**:
-  1.  **补充细节**: 从`<source_text>`中寻找被省略的关键细节或背景信息进行补充。
-  2.  **展开论述**: 适度展开最终的分析结论，使其更具说服力。
-  3.  **避免空话**: 补充的内容必须是言之有物的事实或观点，禁止添加无意义的填充性文字。
-"""
-        return instruction
-    else:
-        # 长度合规
-        return None
+    # 统一使用574字符标准
+    result, actual_length, detail_info = validate_574_character_standard(content)
+    return result
 
 if __name__ == "__main__":
     # asyncio.run(generate_briefs())
