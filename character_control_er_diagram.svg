@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .entity { fill: #E3F2FD; stroke: #1976D2; stroke-width: 2; }
+      .attribute { fill: #FFF3E0; stroke: #F57C00; stroke-width: 1; }
+      .relationship { fill: #E8F5E8; stroke: #388E3C; stroke-width: 2; }
+      .text { font-family: 'Microsoft YaHei', Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .title { font-size: 16px; font-weight: bold; }
+      .entity-title { font-size: 14px; font-weight: bold; }
+      .line { stroke: #333; stroke-width: 1; }
+      .constraint { fill: #FFEBEE; stroke: #D32F2F; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="700" y="30" class="text title">安邦简报生成系统 - 字符控制流程 ER 图</text>
+  
+  <!-- 源文本实体 -->
+  <rect x="50" y="80" width="150" height="100" class="entity" rx="5"/>
+  <text x="125" y="105" class="text entity-title">源文本</text>
+  <text x="125" y="125" class="text">SourceText</text>
+  <ellipse cx="30" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="30" y="135" class="text">文本内容</text>
+  <ellipse cx="220" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="220" y="135" class="text">文本长度</text>
+  
+  <!-- 简报内容实体 -->
+  <rect x="350" y="80" width="150" height="100" class="entity" rx="5"/>
+  <text x="425" y="105" class="text entity-title">简报内容</text>
+  <text x="425" y="125" class="text">BriefContent</text>
+  <ellipse cx="330" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="330" y="135" class="text">内容文本</text>
+  <ellipse cx="520" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="520" y="135" class="text">当前长度</text>
+  
+  <!-- 长度约束实体 -->
+  <rect x="650" y="80" width="150" height="100" class="constraint" rx="5"/>
+  <text x="725" y="105" class="text entity-title">长度约束</text>
+  <text x="725" y="125" class="text">LengthConstraint</text>
+  <ellipse cx="630" cy="60" rx="25" ry="15" class="attribute"/>
+  <text x="630" y="65" class="text">min_len</text>
+  <ellipse cx="720" cy="60" rx="25" ry="15" class="attribute"/>
+  <text x="720" y="65" class="text">max_len</text>
+  <ellipse cx="820" cy="60" rx="25" ry="15" class="attribute"/>
+  <text x="820" y="65" class="text">optimal_target</text>
+  <ellipse cx="675" cy="200" rx="25" ry="15" class="attribute"/>
+  <text x="675" y="205" class="text">tolerance</text>
+  
+  <!-- 校验结果实体 -->
+  <rect x="950" y="80" width="150" height="100" class="entity" rx="5"/>
+  <text x="1025" y="105" class="text entity-title">校验结果</text>
+  <text x="1025" y="125" class="text">ValidationResult</text>
+  <ellipse cx="930" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="930" y="135" class="text">校验状态</text>
+  <ellipse cx="1120" cy="130" rx="25" ry="15" class="attribute"/>
+  <text x="1120" y="135" class="text">修改指令</text>
+  
+  <!-- 上下文摘要实体 -->
+  <rect x="200" y="300" width="150" height="100" class="entity" rx="5"/>
+  <text x="275" y="325" class="text entity-title">上下文摘要</text>
+  <text x="275" y="345" class="text">ContextSummary</text>
+  <ellipse cx="180" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="180" y="355" class="text">设计意图</text>
+  <ellipse cx="370" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="370" y="355" class="text">修改历史</text>
+  
+  <!-- 审查流程实体 -->
+  <rect x="500" y="300" width="150" height="100" class="relationship" rx="5"/>
+  <text x="575" y="325" class="text entity-title">审查流程</text>
+  <text x="575" y="345" class="text">ReviewProcess</text>
+  <ellipse cx="480" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="480" y="355" class="text">审查类型</text>
+  <ellipse cx="670" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="670" y="355" class="text">迭代次数</text>
+  
+  <!-- 修改指令实体 -->
+  <rect x="800" y="300" width="150" height="100" class="entity" rx="5"/>
+  <text x="875" y="325" class="text entity-title">修改指令</text>
+  <text x="875" y="345" class="text">ModificationInstruction</text>
+  <ellipse cx="780" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="780" y="355" class="text">指令类型</text>
+  <ellipse cx="970" cy="350" rx="25" ry="15" class="attribute"/>
+  <text x="970" y="355" class="text">优先级</text>
+  
+  <!-- 三级梯度校验区域 -->
+  <rect x="100" y="500" width="200" height="80" class="constraint" rx="5"/>
+  <text x="200" y="525" class="text entity-title">强制修正区</text>
+  <text x="200" y="545" class="text">Hard Fail Zone</text>
+  <text x="200" y="565" class="text">&lt; min_len 或 &gt; max_len</text>
+  
+  <rect x="350" y="500" width="200" height="80" class="entity" rx="5"/>
+  <text x="450" y="525" class="text entity-title">建议优化区</text>
+  <text x="450" y="545" class="text">Soft Fail Zone</text>
+  <text x="450" y="565" class="text">不在理想区间内</text>
+  
+  <rect x="600" y="500" width="200" height="80" class="relationship" rx="5"/>
+  <text x="700" y="525" class="text entity-title">理想区</text>
+  <text x="700" y="545" class="text">Success Zone</text>
+  <text x="700" y="565" class="text">optimal_target ± tolerance</text>
+  
+  <!-- 工作流程实体 -->
+  <rect x="50" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="110" y="675" class="text entity-title">解析源文本</text>
+  <text x="110" y="695" class="text">ParseSource</text>
+  
+  <rect x="220" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="280" y="675" class="text entity-title">起草内容</text>
+  <text x="280" y="695" class="text">DraftContent</text>
+  
+  <rect x="390" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="450" y="675" class="text entity-title">宏观审查</text>
+  <text x="450" y="695" class="text">MacroReview</text>
+  
+  <rect x="560" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="620" y="675" class="text entity-title">微观审查</text>
+  <text x="620" y="695" class="text">MicroReview</text>
+  
+  <rect x="730" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="790" y="675" class="text entity-title">内容修改</text>
+  <text x="790" y="695" class="text">RefineContent</text>
+  
+  <rect x="900" y="650" width="120" height="60" class="entity" rx="5"/>
+  <text x="960" y="675" class="text entity-title">长度校验</text>
+  <text x="960" y="695" class="text">ValidateLength</text>
+  
+  <!-- 关系连线 -->
+  <!-- 源文本到简报内容 -->
+  <line x1="200" y1="130" x2="350" y2="130" class="line"/>
+  <text x="275" y="125" class="text">生成</text>
+  
+  <!-- 简报内容到长度约束 -->
+  <line x1="500" y1="130" x2="650" y2="130" class="line"/>
+  <text x="575" y="125" class="text">校验</text>
+  
+  <!-- 长度约束到校验结果 -->
+  <line x1="800" y1="130" x2="950" y2="130" class="line"/>
+  <text x="875" y="125" class="text">产生</text>
+  
+  <!-- 简报内容到上下文摘要 -->
+  <line x1="425" y1="180" x2="275" y2="300" class="line"/>
+  <text x="350" y="240" class="text">关联</text>
+  
+  <!-- 上下文摘要到审查流程 -->
+  <line x1="350" y1="350" x2="500" y2="350" class="line"/>
+  <text x="425" y="345" class="text">指导</text>
+  
+  <!-- 审查流程到修改指令 -->
+  <line x1="650" y1="350" x2="800" y2="350" class="line"/>
+  <text x="725" y="345" class="text">生成</text>
+  
+  <!-- 校验结果到修改指令 -->
+  <line x1="1025" y1="180" x2="875" y2="300" class="line"/>
+  <text x="950" y="240" class="text">转化为</text>
+  
+  <!-- 工作流程连线 -->
+  <line x1="170" y1="680" x2="220" y2="680" class="line"/>
+  <polygon points="215,675 220,680 215,685" fill="#333"/>
+  
+  <line x1="340" y1="680" x2="390" y2="680" class="line"/>
+  <polygon points="385,675 390,680 385,685" fill="#333"/>
+  
+  <line x1="510" y1="680" x2="560" y2="680" class="line"/>
+  <polygon points="555,675 560,680 555,685" fill="#333"/>
+  
+  <line x1="680" y1="680" x2="730" y2="680" class="line"/>
+  <polygon points="725,675 730,680 725,685" fill="#333"/>
+  
+  <line x1="850" y1="680" x2="900" y2="680" class="line"/>
+  <polygon points="895,675 900,680 895,685" fill="#333"/>
+  
+  <!-- 反馈循环 -->
+  <path d="M 960 650 Q 960 600 450 600 Q 450 600 450 650" fill="none" stroke="#D32F2F" stroke-width="2"/>
+  <polygon points="445,645 450,650 455,645" fill="#D32F2F"/>
+  <text x="705" y="595" class="text" fill="#D32F2F">迭代反馈循环</text>
+  
+  <!-- 数据流向说明 -->
+  <rect x="50" y="800" width="1100" height="150" fill="#F5F5F5" stroke="#999" stroke-width="1" rx="5"/>
+  <text x="600" y="825" class="text title">字符控制数据流向说明</text>
+  
+  <text x="70" y="850" class="text">1. 程序化校验：validate_and_instruct_content_length() 函数实现三级梯度校验</text>
+  <text x="70" y="870" class="text">   • 强制修正区：长度超出 [min_len, max_len] 范围，必须修正</text>
+  <text x="70" y="890" class="text">   • 建议优化区：长度在约束范围内但未达到理想区间，建议优化</text>
+  <text x="70" y="910" class="text">   • 理想区：长度在 optimal_target ± tolerance 范围内，无需修改</text>
+  
+  <text x="70" y="935" class="text">2. 语义化集成：程序化校验结果与上下文信息整合，传递给 LLM 进行语义理解和内容修改</text>
+</svg>
