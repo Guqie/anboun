@@ -1,0 +1,79 @@
+{
+  "test_session": "20250829_152543",
+  "start_time": "2025-08-29T15:25:43.176010",
+  "steps": [
+    {
+      "step_name": "interpret_source_text",
+      "start_time": "2025-08-29T15:25:43.179637",
+      "inputs": {
+        "source_text_length": 3247,
+        "source_text_preview": "新财观|熊猫债二十年：人民币国际化进程中的金融桥梁与创新引擎\n东方财富网  [原址]\nWebSpider 2025-08-26 08:26:32\n2025-08-26 08:20\n\n来源：新华财经\n\n自2005年亚洲开发银行和国际金融公司首开先河发行熊猫债券以来，这一具有鲜明中国标识的跨境人民币债券已稳步走过二十年历程。它不仅是连接在岸与离岸市场的重要融资工具，更是人民币国际化进程中不可或缺的组成..."
+      },
+      "status": "success",
+      "end_time": "2025-08-29T15:26:55.182571",
+      "duration": 72.002934,
+      "outputs": {
+        "interpretation_length": 3,
+        "interpretation_preview": [
+          "{\n    \"中心新闻事件5w1h要素\": {\n        \"who\": \"熊猫债券市场及其参与主体（境外发行人包括多边开发机构、外国政府、境外金融机构和境外非金融企业；以及境内监管部门、国内投资者和市场中介机构）\",\n        \"what\": \"回顾熊猫债券自2005年以来二十年发展成果，评估市场现状并提出推动市场高质量发展的政策与产品建议\",\n        \"when\": \"自2005年起；文章截至数据至2025年7月并于2025-08-26发布（总结二十年发展）\",\n        \"where\": \"中国在岸人民币债券市场（境内），同时涉及境外发行人与离岸市场的联动\",\n        \"why\": \"作为连接在岸与离岸市场的融资工具，支持人民币国际化、吸引国际发行人和投资者、丰富人民币资产配置渠道\",\n        \"how\": \"通过政策开放与制度完善（如2016年“258号文”、2018年“16号文”、2022年“272号文”、2025年多部门推出的再投资绿色通道等）、产品创新（绿色、碳中和、可持续挂钩债、长期债、指数化产品、ETF、衍生品）以及市场参与主体扩容\"\n    },\n    \"时间提示词及其对应的事件\": [\n        \"2005年：亚洲开发银行和国际金融公司首次在中国发行熊猫债券，标志熊猫债市场起始。\",\n        \"二十年历程：自2005年至2025年，熊猫债券市场稳步发展并成为人民币国际化的重要组成部分。\",\n        \"近年来：随着中国金融市场开放和人民币国际地位提升，熊猫债市场显著扩容、产品结构多元化、制度框架完善。\",\n        \"截至2025年7月：熊猫债市场累计发行规模突破1万亿元。\",\n        \"2024年全年：熊猫债发行量达到1948亿元，创历史新高。\",\n        \"2025年前7个月：发行量已突破1100亿元，预计全年有望触及2000亿元大关。\",\n        \"2016年：人民银行发布“258号文”放开募集资金跨境使用限制；同年附评级发行占比曾高达81.7%。\",\n        \"2018年：发布“16号文”，构建银行间市场熊猫债发行的系统性管理框架。\",\n        \"2022年：发布“272号文”，进一步简化资金管理流程。\",\n        \"2025年2月：交易商协会发布《关于进一步优化银行间债券市场境外机构发行绿色债券机制安排有关事项的通知》。\",\n        \"2025年：七部门联合推出再投资“绿色通道”机制（文章提及）。\",\n        \"目前/目前市场上：已发行熊猫债券主要为短期票据及1年期-10年期债券，3年期及以下发行规模最大，5年期以上规模最小。\"\n    ],\n    \"补充上下文的数据或统计信息\": [\n        \"截至2025年7月，熊猫债市场累计发行规模突破1万亿元（指在岸以人民币计价的境外机构发行的债券累计规模）。\",\n        \"2024年全年发行量达到1948亿元（2024年全年在熊猫债市场完成的发行总额，为历史年度最高值）。\",\n        \"2025年前7个月的发行量已突破1100亿元（2025年1–7月间已实现的累计发行额），预计2025年全年发行量有望接近或触及2000亿元大关（基于上半年/前7个月发行节奏的预测）。\",\n        \"2016年附评级发行的熊猫债券规模占比高达81.7%（指2016年在熊猫债市场中，附带信用评级的债券在发行规模中所占比重）。\",\n        \"2025年前7个月附评级发行的熊猫债券规模为318.5亿元，占当期发行总额的比重不足30%（反映近期附评级发行占比显著下降的量化情况）。\",\n        \"期限结构分布说明：市场上主要为短期票据及1年期–10年期债券，3年期及以下发行规模最大，而5年期以上发行规模最小（说明长期和超长期产品稀缺，未给出具体数值但描述分布特点）。\"\n    ],\n    \"人物和组织\": [\n        \"亚洲开发银行（Asian Development Bank）\",\n        \"国际金融公司（International Finance Corporation）\",\n        \"外国政府（境外发行主体类型）\",\n        \"境外金融机构（境外发行主体类型）\",\n        \"境外非金融企业（境外发行主体类型）\",\n        \"中国人民银行\",\n        \"交易商协会（发布2025年2月绿色债券优化安排的机构）\",\n        \"七部门（文章提及的多部委联合推出再投资“绿色通道”机制）\",\n        \"东方财富网（发布/转载媒体）\",\n        \"新华财经（文章来源）\"\n    ],\n    \"城市或行政区\": [],\n    \"引文标题\": [\n        \"《关于进一步优化银行间债券市场境外机构发行绿色债券机制安排有关事项的通知》\",\n        \"《258号文》\",\n        \"《16号文》\",\n        \"《272号文》\"\n    ],\n    \"不可分割和不可简化的短语\": [\n        \"熊猫债券\",\n        \"绿色熊猫债券\",\n        \"碳中和\",\n        \"可持续发展挂钩债券\",\n        \"募集资金跨境使用限制\",\n        \"银行间市场熊猫债发行的系统性管理框架\",\n        \"再投资“绿色通道”机制\",\n        \"期限结构\",\n        \"信用评级覆盖\",\n        \"熊猫债券指数\",\n        \"熊猫债券ETF\",\n        \"跨境贸易－碳交易市场－绿色认证－绿色熊猫债（闭环投融资流程）\"\n    ],\n    \"经济和金融专业术语\": [\n        \"交易型开放式指数基金（ETF：Exchange-Traded Fund）\",\n        \"期限结构（Term Structure，TS）\",\n        \"信用评级（Credit Rating，CR）\",\n        \"衍生工具/衍生品（Derivatives，DER）\",\n        \"短期票据/商业票据（Commercial Paper，CP）\",\n        \"期权（Options，OPT）\",\n        \"期货（Futures，FUT）\",\n        \"指数化产品（Index Products，IDX）\"\n    ],\n    \"科技专业术语\": [],\n    \"关键要点提炼\": [\n        \"熊猫债券自2005年发行以来已走过二十年，截至2025年7月累计发行规模突破1万亿元，并成为推动人民币国际化的重要渠道。\",\n        \"市场在近年显著扩容并涌现绿色、碳中和、可持续挂钩等创新品类，但仍在期限结构、信用评级覆盖、衍生品配套和指数化产品等方面与成熟市场存在差距。\",\n        \"文章提出一系列政策与市场层面的建议（扩大绿色发行适用主体、发展绿色熊猫债并支持境外机构参与碳交易、鼓励长期债发行、扩大评级覆盖、创建熊猫债指数/ETF、设计衍生品）以推动市场由高速增长向高质量发展转型。\"\n    ],\n    \"中心新闻事件总结\": \"2025-08-26，文章回顾了自2005年首发以来熊猫债券二十年的发展，指出截至2025年7月累计发行规模突破1万亿元、2024年发行创历史高点（1948亿元）、2025年前7个月发行已突破1100亿元并预计全年接近2000亿元，并在分析市场扩容与创新的同时提出扩大绿色债券发行主体、发展长期期限产品、提升评级覆盖、推出指数与ETF及衍生品等若干政策与市场建议，以促进熊猫债市场服务人民币国际化与高质量发展。\",\n    \"分析视角与分析方向\": \"可从政策与监管演进、市场结构与产品供给、信用与流动性风险、绿色金融与碳市场联动、以及人民币资产国际化影响五个维度展开分析，以评估熊猫债市场的可持续发展路径与对外金融开放的战略价值。\",\n    \"分析师观点或分析要求\": \"文章作者提出的主要建议包括：1) 将绿色熊猫债发行优化机制适用主体扩大至符合条件的境外非金融企业并实施分层管理；2) 大力发展绿色熊猫债，支持并鼓励境外机构以人民币参与境内碳排放权交易，探索建立全球碳人民币基金；3) 鼓励发行人尝试发行10年期以上长期熊猫债以丰富期限结构；4) 扩大熊猫债信用评级覆盖度以增强信用风险揭示；5) 创建熊猫债券指数、熊猫债券ETF等主题产品以提高市场交易活力；6) 设计相关期权、期货等衍生品以满足风险对冲与交易需求。\"\n}",
+          "熊猫债券自2005年发行以来已走过二十年，截至2025年7月累计发行规模突破1万亿元，并成为推动人民币国际化的重要渠道。\n市场在近年显著扩容并涌现绿色、碳中和、可持续挂钩等创新品类，但仍在期限结构、信用评级覆盖、衍生品配套和指数化产品等方面与成熟市场存在差距。\n文章提出一系列政策与市场层面的建议（扩大绿色发行适用主体、发展绿色熊猫债并支持境外机构参与碳交易、鼓励长期债发行、扩大评级覆盖、创建熊猫债指数/ETF、设计衍生品）以推动市场由高速增长向高质量发展转型。",
+          "2025-08-26"
+        ]
+      }
+    },
+    {
+      "step_name": "match_articles",
+      "start_time": "2025-08-29T15:26:55.183266",
+      "inputs": {
+        "source_text_length": 3247,
+        "file_name": "每日经济每日金融1-10"
+      },
+      "status": "error",
+      "end_time": "2025-08-29T15:26:58.040973",
+      "duration": 2.857707,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 468, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 401, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+      }
+    },
+    {
+      "step_name": "complete_content_workflow",
+      "start_time": "2025-08-29T15:26:58.045883",
+      "inputs": {
+        "source_text_length": 3247,
+        "interpretation_length": 3,
+        "article_contents_length": 0
+      },
+      "status": "error",
+      "end_time": "2025-08-29T15:28:12.933820",
+      "duration": 74.887937,
+      "error": {
+        "type": "KeyError",
+        "message": "'brief_content'",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 419, in test_complete_content_workflow\n    result, context_summary = await draft_and_refine_brief_content(source_text, interpretation, article_contents)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 263, in draft_and_refine_brief_content\n    refined_brief_content, current_context_summary = await refine_brief_content(brief_content, feedback_on_content, None, current_context_summary)\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 207, in refine_brief_content\n    system_message = get_prompt('e_refine_brief_content', draft_context_summary=draft_context_summary or \"\")\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\utils.py\", line 80, in get_prompt\n    return prompt.format(**arguments)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^\nKeyError: 'brief_content'\n"
+      }
+    }
+  ],
+  "summary": {
+    "total_steps": 3,
+    "successful_steps": 1,
+    "failed_steps": 2,
+    "success_rate": 33.33333333333333,
+    "average_step_duration": 49.91619266666666
+  },
+  "errors": [
+    {
+      "type": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 468, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 401, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+    },
+    {
+      "type": "KeyError",
+      "message": "'brief_content'",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 419, in test_complete_content_workflow\n    result, context_summary = await draft_and_refine_brief_content(source_text, interpretation, article_contents)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 263, in draft_and_refine_brief_content\n    refined_brief_content, current_context_summary = await refine_brief_content(brief_content, feedback_on_content, None, current_context_summary)\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 207, in refine_brief_content\n    system_message = get_prompt('e_refine_brief_content', draft_context_summary=draft_context_summary or \"\")\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\utils.py\", line 80, in get_prompt\n    return prompt.format(**arguments)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^\nKeyError: 'brief_content'\n"
+    }
+  ],
+  "end_time": "2025-08-29T15:28:12.938148",
+  "total_duration": 149.762138
+}

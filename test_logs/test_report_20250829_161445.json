@@ -1,0 +1,79 @@
+{
+  "test_session": "20250829_161445",
+  "start_time": "2025-08-29T16:14:45.854407",
+  "steps": [
+    {
+      "step_name": "interpret_source_text",
+      "start_time": "2025-08-29T16:14:45.862225",
+      "inputs": {
+        "source_text_length": 3247,
+        "source_text_preview": "新财观|熊猫债二十年：人民币国际化进程中的金融桥梁与创新引擎\n东方财富网  [原址]\nWebSpider 2025-08-26 08:26:32\n2025-08-26 08:20\n\n来源：新华财经\n\n自2005年亚洲开发银行和国际金融公司首开先河发行熊猫债券以来，这一具有鲜明中国标识的跨境人民币债券已稳步走过二十年历程。它不仅是连接在岸与离岸市场的重要融资工具，更是人民币国际化进程中不可或缺的组成..."
+      },
+      "status": "success",
+      "end_time": "2025-08-29T16:16:02.094909",
+      "duration": 76.232684,
+      "outputs": {
+        "interpretation_length": 3,
+        "interpretation_preview": [
+          "{\n    \"中心新闻事件5w1h要素\": {\n        \"who\": \"熊猫债券市场及其参与主体（最初发行方为亚洲开发银行、国际金融公司，现包括外国政府、境外金融机构、境外非金融企业、国内外投资者）与监管机构（中国人民银行、交易商协会、七部门等）\",\n        \"what\": \"纪念并回顾熊猫债发行二十年，评估其在人民币国际化中的作用、市场扩容与产品创新，并提出推动市场高质量发展的一系列政策与市场建议\",\n        \"when\": \"2005年至2025年（以2005年首发为起点，本文以2025年二十年为时间节点，文中数据截止至2025年7月）\",\n        \"where\": \"中国在岸人民币市场及与之相连的离岸市场（覆盖亚洲、欧洲、美洲等地区的境外主体参与）\",\n        \"why\": \"作为连接在岸与离岸市场的重要融资工具，熊猫债推动人民币国际化、为境外机构进入中国资本市场提供人民币融资渠道，并支持绿色金融与跨境人民币使用\",\n        \"how\": \"通过发行规模扩张、产品结构多元化（如绿色、碳中和、可持续挂钩债）、监管制度优化（如2016年“258号文”、2018年“16号文”、2022年“272号文”、2025年多部门绿色通道等）以及鼓励长期期限、评级覆盖、指数化和衍生品等市场建设\"\n    },\n    \"时间提示词及其对应的事件\": [\n        \"2005年：亚洲开发银行和国际金融公司首次发行熊猫债券，标志熊猫债市场起步。\",\n        \"二十年（2005—2025年）：熊猫债市场走过二十年发展历程并进入新的发展阶段。\",\n        \"截至2025年7月：熊猫债市场累计发行规模突破1万亿元。\",\n        \"2024年：全年发行量达到1948亿元，创历史新高。\",\n        \"2025年前7个月：发行量已突破1100亿元，预计全年有望触及2000亿元大关。\",\n        \"2016年：中国人民银行发布“258号文”，放开募集资金跨境使用限制。\",\n        \"2018年：发布“16号文”，构建银行间市场熊猫债发行系统性管理框架。\",\n        \"2022年：发布“272号文”，进一步简化资金管理流程。\",\n        \"2025年2月：交易商协会发布《关于进一步优化银行间债券市场境外机构发行绿色债券机制安排有关事项的通知》。\",\n        \"2025年：七部门联合推出再投资“绿色通道”机制（文中提及多部门制度安排）。\",\n        \"近年来/近两年：文章多次以“近年来”“近两年”概括绿色金融、ETF市场扩容及产品创新的持续推进。\"\n    ],\n    \"补充上下文的数据或统计信息\": [\n        \"截至2025年7月，熊猫债市场累计发行规模突破1万亿元：表明自2005年以来境外主体通过在华人民币债券市场累计募集的规模已超过1万亿元人民币（数据截止2025年7月）。\",\n        \"2024年全年发行量达到1948亿元：2024年单年熊猫债发行规模创历史新高，为1948亿元人民币。\",\n        \"2025年前7个月的发行量已突破1100亿元：说明2025年上半年—7月期间市场延续活跃，累计发行额逾1100亿元人民币，文章预计全年可能接近或超过2000亿元。\",\n        \"预计2025年全年有望触及2000亿元大关：基于前7个月数据，文章预测全年发行规模接近或超过2000亿元人民币。\",\n        \"2016年附评级发行占比为81.7%：2016年熊猫债中附有信用评级的发行占比高达81.7%。\",\n        \"2025年前7个月附评级发行规模为318.5亿元，占发行总额不足30%：到2025年前7个月，附评级的熊猫债仅318.5亿元，比例明显下降（文中指出低于同期国内信用债附评级发行比例）。\"\n    ],\n    \"人物和组织\": [\n        \"亚洲开发银行\",\n        \"国际金融公司\",\n        \"外国政府\",\n        \"境外金融机构\",\n        \"境外非金融企业\",\n        \"国内外投资者\",\n        \"中国人民银行\",\n        \"交易商协会\",\n        \"七部门（多部门联合推出政策机制）\",\n        \"东方财富网\",\n        \"新华财经\",\n        \"笔者（文章作者，未署名）\"\n    ],\n    \"城市或行政区\": [\n        \"中国（在岸市场）\",\n        \"亚洲地区\",\n        \"欧洲地区\",\n        \"美洲地区\"\n    ],\n    \"引文标题\": [\n        \"《关于进一步优化银行间债券市场境外机构发行绿色债券机制安排有关事项的通知》\",\n        \"《258号文》\",\n        \"《16号文》\",\n        \"《272号文》\"\n    ],\n    \"不可分割和不可简化的短语\": [\n        \"熊猫债券\",\n        \"绿色熊猫债券\",\n        \"人民币国际化\",\n        \"在岸与离岸市场\",\n        \"再投资“绿色通道”机制\",\n        \"期限结构\",\n        \"收益率曲线\",\n        \"债券ETF\"\n    ],\n    \"经济和金融专业术语\": [\n        \"信用评级（Credit Rating, CR）\",\n        \"债券ETF（Bond Exchange-Traded Fund, ETF）\",\n        \"衍生品／衍生工具（Derivatives, DER）\",\n        \"期权／期货（Options / Futures, O/F）\",\n        \"收益率曲线（Yield Curve, YC）\",\n        \"期限结构（Maturity Structure, MS）\",\n        \"信用风险（Credit Risk, C-Risk）\"\n    ],\n    \"科技专业术语\": [\n        \"碳排放权交易（Emissions Trading System, ETS）：一种通过市场机制对二氧化碳等温室气体排放配额进行买卖以实现减排目标的制度安排。\",\n        \"碳中和（Carbon Neutrality, CN）：指通过减少排放和通过碳汇或碳抵消等方式抵消剩余排放，使净排放量达到零的目标。\",\n        \"绿色金融（Green Finance, GF）：将环境友好和可持续发展目标纳入金融产品与服务设计与投资决策的金融体系与实践。\"\n    ],\n    \"关键要点提炼\": [\n        \"熊猫债自2005年首发至2025年已走过二十年，成为连接在岸与离岸人民币市场的重要跨境债券品种，并在规模与产品上持续扩容与创新。\",\n        \"截至2025年7月累计发行规模突破1万亿元，2024年发行创历史高点（1948亿元），2025年前7个月已超1100亿元，市场仍有进一步增长空间但在期限结构、评级覆盖与衍生品配套上存在短板。\",\n        \"文章提出包括扩大绿色发行主体范围、发展长期期限产品、提高评级覆盖、打造指数与ETF产品、以及设计相关衍生品等在内的多项建议，以推动熊猫债从高速增长向高质量发展转变并服务人民币国际化。\"\n    ],\n    \"中心新闻事件总结\": \"2025年，适逢熊猫债发行二十年，文章回顾自2005年亚洲开发银行和国际金融公司首发以来熊猫债在连接在岸与离岸市场、支持人民币国际化与绿色金融方面的作用，列举截至2025年7月的市场规模与发行数据，分析当前存在的期限结构与评级覆盖等不足，并就扩大绿色发行主体、发展长期债、提高评级覆盖、创建指数与ETF、以及发展衍生品等提出政策与市场建设建议。\",\n    \"分析视角与分析方向\": \"可从监管与制度建设视角评估政策工具的有效性、从市场结构与流动性视角分析期限结构与产品配套短板、以及从国际化与绿色金融视角评估熊猫债在吸引境外发行人与投资者、支持碳交易与人民币跨境使用方面的潜力与障碍。\",\n    \"分析师观点或分析要求\": \"文章作者提出的主要建议包括：\\n（一）将绿色熊猫债发行的优化机制适用主体扩大到部分境外非金融企业，对符合标准的境外非金融企业实行分层管理并给予与政府/国际机构同等的发行便利；\\n（二）大力发展绿色熊猫债，支持并鼓励境外机构以人民币参与境内碳排放权交易，探索建立全球碳人民币基金，形成跨境贸易—碳交易市场—绿色认证—绿色熊猫债的闭环投融资流程；\\n（三）鼓励发行人尝试发行10年期以上长期熊猫债，以充实期限结构并满足长期人民币配置需求；\\n（四）扩大熊猫债信用评级覆盖度，鼓励附评级发行以增强信用风险揭示；\\n（五）尝试创建“熊猫债券指数”与“熊猫债券ETF”等主题产品以追踪市场表现并提高交易活力；\\n（六）设计相关期权、期货等金融衍生品以满足风险对冲和套利需求，提升市场流动性与风险管理工具可得性。\"\n}",
+          "熊猫债自2005年首发至2025年已走过二十年，成为连接在岸与离岸人民币市场的重要跨境债券品种，并在规模与产品上持续扩容与创新。\n截至2025年7月累计发行规模突破1万亿元，2024年发行创历史高点（1948亿元），2025年前7个月已超1100亿元，市场仍有进一步增长空间但在期限结构、评级覆盖与衍生品配套上存在短板。\n文章提出包括扩大绿色发行主体范围、发展长期期限产品、提高评级覆盖、打造指数与ETF产品、以及设计相关衍生品等在内的多项建议，以推动熊猫债从高速增长向高质量发展转变并服务人民币国际化。",
+          "2025-08-26"
+        ]
+      }
+    },
+    {
+      "step_name": "match_articles",
+      "start_time": "2025-08-29T16:16:02.095588",
+      "inputs": {
+        "source_text_length": 3247,
+        "file_name": "每日经济每日金融1-10"
+      },
+      "status": "error",
+      "end_time": "2025-08-29T16:16:04.539828",
+      "duration": 2.44424,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 466, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 399, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+      }
+    },
+    {
+      "step_name": "complete_content_workflow",
+      "start_time": "2025-08-29T16:16:04.543717",
+      "inputs": {
+        "source_text_length": 3247,
+        "interpretation_length": 3,
+        "article_contents_length": 0
+      },
+      "status": "error",
+      "end_time": "2025-08-29T16:19:31.702173",
+      "duration": 207.158456,
+      "error": {
+        "type": "AttributeError",
+        "message": "module 'json' has no attribute 'dumps(json_format, indent=4, ensure_ascii=False)'",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 419, in test_complete_content_workflow\n    result, context_summary = await draft_and_refine_brief_content(source_text, interpretation, article_contents)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 281, in draft_and_refine_brief_content\n    feedback_on_sentences = await review_brief_sentences(source_text, brief_content, current_context_summary)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 179, in review_brief_sentences\n    system_message = get_prompt('d_review_brief_sentences',\n                               draft_context_summary=draft_context_summary or \"\",\n                               json=json,\n                               json_format=json_format)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\utils.py\", line 80, in get_prompt\n    return prompt.format(**arguments)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^\nAttributeError: module 'json' has no attribute 'dumps(json_format, indent=4, ensure_ascii=False)'\n"
+      }
+    }
+  ],
+  "summary": {
+    "total_steps": 3,
+    "successful_steps": 1,
+    "failed_steps": 2,
+    "success_rate": 33.33333333333333,
+    "average_step_duration": 95.27846
+  },
+  "errors": [
+    {
+      "type": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 466, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 399, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+    },
+    {
+      "type": "AttributeError",
+      "message": "module 'json' has no attribute 'dumps(json_format, indent=4, ensure_ascii=False)'",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 419, in test_complete_content_workflow\n    result, context_summary = await draft_and_refine_brief_content(source_text, interpretation, article_contents)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 281, in draft_and_refine_brief_content\n    feedback_on_sentences = await review_brief_sentences(source_text, brief_content, current_context_summary)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 179, in review_brief_sentences\n    system_message = get_prompt('d_review_brief_sentences',\n                               draft_context_summary=draft_context_summary or \"\",\n                               json=json,\n                               json_format=json_format)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\utils.py\", line 80, in get_prompt\n    return prompt.format(**arguments)\n           ~~~~~~~~~~~~~^^^^^^^^^^^^^\nAttributeError: module 'json' has no attribute 'dumps(json_format, indent=4, ensure_ascii=False)'\n"
+    }
+  ],
+  "end_time": "2025-08-29T16:19:31.706018",
+  "total_duration": 285.851611
+}

@@ -1,0 +1,59 @@
+{
+  "test_session": "20250829_163706",
+  "start_time": "2025-08-29T16:37:06.719245",
+  "steps": [
+    {
+      "step_name": "interpret_source_text",
+      "start_time": "2025-08-29T16:37:06.726691",
+      "inputs": {
+        "source_text_length": 3247,
+        "source_text_preview": "新财观|熊猫债二十年：人民币国际化进程中的金融桥梁与创新引擎\n东方财富网  [原址]\nWebSpider 2025-08-26 08:26:32\n2025-08-26 08:20\n\n来源：新华财经\n\n自2005年亚洲开发银行和国际金融公司首开先河发行熊猫债券以来，这一具有鲜明中国标识的跨境人民币债券已稳步走过二十年历程。它不仅是连接在岸与离岸市场的重要融资工具，更是人民币国际化进程中不可或缺的组成..."
+      },
+      "status": "error",
+      "end_time": "2025-08-29T16:37:06.730471",
+      "duration": 0.00378,
+      "error": {
+        "type": "NameError",
+        "message": "name 'json_dumps_result' is not defined",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 209, in test_interpret_source_text\n    result = await interpret_source_text(source_text)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 47, in interpret_source_text\n    a_module = importlib.import_module('prompts.a_interpret_source_text')\n  File \"D:\\anaconda3\\Lib\\importlib\\__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\prompts\\a_interpret_source_text.py\", line 79, in <module>\n    {json_dumps_result}\n     ^^^^^^^^^^^^^^^^^\nNameError: name 'json_dumps_result' is not defined\n"
+      }
+    },
+    {
+      "step_name": "match_articles",
+      "start_time": "2025-08-29T16:37:06.734836",
+      "inputs": {
+        "source_text_length": 3247,
+        "file_name": "每日经济每日金融1-10"
+      },
+      "status": "error",
+      "end_time": "2025-08-29T16:37:10.172365",
+      "duration": 3.437529,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 476, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 409, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+      }
+    }
+  ],
+  "summary": {
+    "total_steps": 2,
+    "successful_steps": 0,
+    "failed_steps": 2,
+    "success_rate": 0.0,
+    "average_step_duration": 1.7206545
+  },
+  "errors": [
+    {
+      "type": "NameError",
+      "message": "name 'json_dumps_result' is not defined",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 209, in test_interpret_source_text\n    result = await interpret_source_text(source_text)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 47, in interpret_source_text\n    a_module = importlib.import_module('prompts.a_interpret_source_text')\n  File \"D:\\anaconda3\\Lib\\importlib\\__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\prompts\\a_interpret_source_text.py\", line 79, in <module>\n    {json_dumps_result}\n     ^^^^^^^^^^^^^^^^^\nNameError: name 'json_dumps_result' is not defined\n"
+    },
+    {
+      "type": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: '每日经济每日金融1-10.csv'",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\test_isolated_workflow.py\", line 236, in test_match_articles\n    result = await match_articles(source_text, file_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 476, in match_articles\n    all_keywords_and_tags = get_all_keywords_and_tags(file_name)\n  File \"D:\\桌面\\安邦-简报项目\\8.15\\briefgenerator-main\\workflow.py\", line 409, in get_all_keywords_and_tags\n    with open(f\"{file_name}.csv\", 'r', encoding='utf-8') as file:\n         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'\n"
+    }
+  ],
+  "end_time": "2025-08-29T16:37:10.175879",
+  "total_duration": 3.456634
+}

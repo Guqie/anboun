@@ -1,0 +1,17 @@
+简报生成流程隔离化测试报告
+==================================================
+测试会话ID: 20250829_161445
+开始时间: 2025-08-29T16:14:45.854407
+结束时间: 2025-08-29T16:19:31.706018
+总耗时: 285.85秒
+
+测试统计:
+总步骤数: 3
+成功步骤: 1
+失败步骤: 2
+成功率: 33.3%
+平均步骤耗时: 95.28秒
+
+错误详情:
+1. FileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'
+2. AttributeError: module 'json' has no attribute 'dumps(json_format, indent=4, ensure_ascii=False)'

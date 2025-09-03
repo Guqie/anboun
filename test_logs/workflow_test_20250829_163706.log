@@ -1,0 +1,70 @@
+2025-08-29 16:37:06,719 - INFO - __init__:80 - === 简报生成流程隔离化测试开始 ===
+2025-08-29 16:37:06,719 - INFO - __init__:81 - 测试会话ID: 20250829_163706
+2025-08-29 16:37:06,720 - INFO - main:599 - 找到 1 个输入文件
+2025-08-29 16:37:06,720 - INFO - main:603 - 
+开始测试文件: 25.txt
+2025-08-29 16:37:06,720 - INFO - run_full_workflow_test:465 - 
+================================================================================
+2025-08-29 16:37:06,721 - INFO - run_full_workflow_test:466 - 开始完整工作流测试: inputs\25.txt
+2025-08-29 16:37:06,725 - INFO - run_full_workflow_test:467 - ================================================================================
+2025-08-29 16:37:06,726 - INFO - run_full_workflow_test:473 - 成功读取输入文件，长度: 3247 字符
+2025-08-29 16:37:06,726 - INFO - log_step_start:132 - 
+============================================================
+2025-08-29 16:37:06,726 - INFO - log_step_start:133 - 开始执行步骤: interpret_source_text
+2025-08-29 16:37:06,727 - INFO - log_step_start:134 - 输入参数: {
+  "source_text_length": 3247,
+  "source_text_preview": "新财观|熊猫债二十年：人民币国际化进程中的金融桥梁与创新引擎\n东方财富网  [原址]\nWebSpider 2025-08-26 08:26:32\n2025-08-26 08:20\n\n来源：新华财经\n\n自2005年亚洲开发银行和国际金融公司首开先河发行熊猫债券以来，这一具有鲜明中国标识的跨境人民币债券已稳步走过二十年历程。它不仅是连接在岸与离岸市场的重要融资工具，更是人民币国际化进程中不可或缺的组成..."
+}
+2025-08-29 16:37:06,733 - ERROR - log_step_end:160 - 步骤 interpret_source_text 执行失败: name 'json_dumps_result' is not defined
+2025-08-29 16:37:06,734 - DEBUG - log_step_end:161 - 错误详情:
+Traceback (most recent call last):
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\test_isolated_workflow.py", line 209, in test_interpret_source_text
+    result = await interpret_source_text(source_text)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\workflow.py", line 47, in interpret_source_text
+    a_module = importlib.import_module('prompts.a_interpret_source_text')
+  File "D:\anaconda3\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\prompts\a_interpret_source_text.py", line 79, in <module>
+    {json_dumps_result}
+     ^^^^^^^^^^^^^^^^^
+NameError: name 'json_dumps_result' is not defined
+
+2025-08-29 16:37:06,734 - INFO - log_step_end:169 - 执行时间: 0.00秒
+2025-08-29 16:37:06,734 - INFO - log_step_start:132 - 
+============================================================
+2025-08-29 16:37:06,735 - INFO - log_step_start:133 - 开始执行步骤: match_articles
+2025-08-29 16:37:06,735 - INFO - log_step_start:134 - 输入参数: {
+  "source_text_length": 3247,
+  "file_name": "每日经济每日金融1-10"
+}
+2025-08-29 16:37:10,173 - ERROR - log_step_end:160 - 步骤 match_articles 执行失败: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'
+2025-08-29 16:37:10,174 - DEBUG - log_step_end:161 - 错误详情:
+Traceback (most recent call last):
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\test_isolated_workflow.py", line 236, in test_match_articles
+    result = await match_articles(source_text, file_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\workflow.py", line 476, in match_articles
+    all_keywords_and_tags = get_all_keywords_and_tags(file_name)
+  File "D:\桌面\安邦-简报项目\8.15\briefgenerator-main\workflow.py", line 409, in get_all_keywords_and_tags
+    with open(f"{file_name}.csv", 'r', encoding='utf-8') as file:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '每日经济每日金融1-10.csv'
+
+2025-08-29 16:37:10,174 - INFO - log_step_end:169 - 执行时间: 3.44秒
+2025-08-29 16:37:10,175 - INFO - main:605 - 文件 25.txt 测试完成
+2025-08-29 16:37:10,175 - INFO - main:606 - 完成步骤: []
+2025-08-29 16:37:10,177 - INFO - generate_test_report:571 - 
+============================================================
+2025-08-29 16:37:10,177 - INFO - generate_test_report:572 - 测试完成！
+2025-08-29 16:37:10,177 - INFO - generate_test_report:573 - 详细报告: test_logs\test_report_20250829_163706.json
+2025-08-29 16:37:10,177 - INFO - generate_test_report:574 - 简要报告: test_logs\test_summary_20250829_163706.txt
+2025-08-29 16:37:10,177 - INFO - generate_test_report:575 - 成功率: 0.0%
+2025-08-29 16:37:10,178 - INFO - generate_test_report:576 - 总耗时: 3.46秒
